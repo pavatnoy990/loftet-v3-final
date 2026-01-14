@@ -15,10 +15,12 @@ export const Footer = () => {
                 <span>Kvernhusmyrane 3, 5914 Knarvik</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href="mailto:tokatterpaloftet@gmail.com" className="hover:text-primary transition-colors">
-                  tokatterpaloftet@gmail.com
-                </a>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+                  <a href="mailto:tokatterpaloftet@gmail.com" className="hover:text-primary transition-colors">
+                    tokatterpaloftet@gmail.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -65,7 +67,7 @@ export const Footer = () => {
                 <span className="font-display text-2xl font-bold text-foreground">2 Katter</span>
                 <span className="font-display text-2xl font-bold text-primary ml-2">på Loftet</span>
               </div>
-              <span className="text-xs text-muted-foreground tracking-widest">bar • restaurant • kultur</span>
+              <span className="text-xs text-muted-foreground tracking-widest">bar • spiseri • kultur</span>
             </Link>
           </div>
         </div>

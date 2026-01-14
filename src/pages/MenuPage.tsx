@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../components/PageTransition';
 import { ParallaxSection } from '../components/ParallaxSection';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
+import { Button } from '../components/ui/button';
+import { ShoppingBag, Phone, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // Definerer bildet her for enkel forhåndslasting
 const RAMEN_HERO = "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&q=75&auto=format&fit=crop";
@@ -109,7 +112,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Soyamelk Kylling Udon',
         description: 'Kremet soyamelk-buljong med mørt kyllingkjøtt og udon-nudler.',
         price: '200,-',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&h=400&fit=crop',
         allergens: 'A, F',
       },
       {
@@ -236,7 +239,6 @@ const allergenCodes = [
 const MenuPage = () => {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
-  // Forhåndslasting for å stoppe flimmer
   useEffect(() => {
     const img = new Image();
     img.src = RAMEN_HERO;
@@ -244,47 +246,74 @@ const MenuPage = () => {
 
   return (
     <PageTransition>
-      {/* Hero Section - Bruker det nye bildet og fjerner flimmer/topp-sort */}
-      <ParallaxSection
-        backgroundImage={RAMEN_HERO}
-        className="pt-32 pb-20"
-        overlayOpacity={0.65}
-        isHero={true}
-      >
-        <div className="container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-display text-5xl md:text-6xl font-bold mb-4"
-          >
-            Vår <span className="text-primary">Meny</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-foreground/80 max-w-2xl mx-auto"
-          >
-            Autentisk japansk ramen og småretter - laget med kjærlighet
-          </motion.p>
-        </div>
-      </ParallaxSection>
+      <div className="relative w-full overflow-hidden bg-[#0a0a0a]">
+        <ParallaxSection
+          backgroundImage={RAMEN_HERO}
+          className="pt-32 pb-24 min-h-[65vh] flex items-center justify-center"
+          overlayOpacity={0.6}
+          isHero={true}
+        >
+          {/* Sentrert innhold */}
+          <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-display text-5xl md:text-8xl font-bold mb-4 tracking-tighter"
+            >
+              Vår <span className="text-primary italic">Meny</span>
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg md:text-2xl text-white/90 max-w-2xl mb-10 font-light leading-relaxed"
+            >
+              Autentisk japansk ramen og småretter - laget med kjærlighet
+            </motion.p>
 
-      {/* Menu Categories */}
-      <div className="py-16 bg-background">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="bg-card/40 backdrop-blur-xl border border-white/10 p-5 rounded-2xl flex items-center gap-5 shadow-2xl text-left hover:border-primary/30 transition-colors"
+            >
+              <div className="bg-primary p-3 rounded-full shadow-lg shadow-primary/20">
+                <ShoppingBag className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-primary mb-1">Sulten hjemme?</p>
+                <Link to="/takeaway" className="flex items-center text-sm text-white font-medium hover:text-primary transition-colors group">
+                  Bestill takeaway her <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </ParallaxSection>
+
+        {/* Mørk gradient i bunnen av Hero */}
+        <div 
+          className="absolute inset-x-0 bottom-0 h-64 z-[20] pointer-events-none" 
+          style={{ 
+            background: 'linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.7) 40%, #0a0a0a 100%)' 
+          }}
+        />
+      </div>
+
+      <div className="py-24 bg-[#0a0a0a] relative z-[30]">
         <div className="container mx-auto px-4">
           {menuCategories.map((category) => (
-            <section key={category.name} className="mb-16 last:mb-0">
-              <div className="mb-8">
+            <section key={category.name} className="mb-24 last:mb-0">
+              <div className="mb-12">
                 <div className="inline-block relative">
-                  <div className="absolute -top-2 left-0 w-12 h-1 bg-primary rounded-full" />
-                  <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+                  <div className="absolute -top-3 left-0 w-16 h-1 bg-primary rounded-full shadow-[0_0_10px_rgba(230,57,70,0.5)]" />
+                  <h2 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight">
                     {category.name}
                   </h2>
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                 {category.items.map((item, itemIndex) => (
                   <motion.div
                     key={item.id}
@@ -292,32 +321,37 @@ const MenuPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: itemIndex * 0.05 }}
-                    whileHover={{ scale: 1.03 }}
-                    className="glow-card bg-card rounded-xl overflow-hidden cursor-pointer border border-border/50 transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(230,57,70,0.3)]"
+                    whileHover={{ y: -10 }}
+                    className="group bg-white/[0.02] rounded-2xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
                     onClick={() => setSelectedItem(item)}
                   >
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-56 overflow-hidden">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute top-3 right-3 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-bold">
+                      <div className="absolute top-4 right-4 bg-primary text-white px-5 py-2 rounded-full text-sm font-black shadow-xl">
                         {item.price}
                       </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                     </div>
-                    <div className="p-5">
-                      <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+                    <div className="p-7">
+                      <h3 className="font-display text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors tracking-tight">
                         {item.name}
                       </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-2">
+                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 mb-8 font-light italic">
                         {item.description}
                       </p>
-                      {item.allergens && (
-                        <p className="text-xs text-primary/70 mt-2">
-                          Allergener: {item.allergens}
-                        </p>
-                      )}
+                      
+                      <div className="flex items-center justify-between border-t border-white/5 pt-5">
+                        <span className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">
+                          Allergener: {item.allergens || 'Ingen'}
+                        </span>
+                        <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary transition-all duration-300">
+                          <ChevronRight className="w-5 h-5 text-white" />
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -325,21 +359,38 @@ const MenuPage = () => {
             </section>
           ))}
 
-          {/* Allergen Info */}
-          <section className="mt-16 pt-8 border-t border-border/30">
-            <h3 className="font-display text-xl font-semibold text-foreground mb-4">
-              Allergeninformasjon
+          {/* Bottom Info Section */}
+          <section className="mt-28 p-12 md:p-16 rounded-[2.5rem] bg-gradient-to-b from-white/[0.03] to-transparent border border-white/5 text-center max-w-4xl mx-auto shadow-3xl backdrop-blur-sm">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 text-white tracking-tight">Noe du ikke tåler?</h2>
+            <p className="text-gray-400 mb-12 max-w-xl mx-auto leading-relaxed text-lg font-light italic">
+              Vennligst informer betjeningen om eventuelle allergier. 
+              Vi har full oversikt over alle allergener i våre retter.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6">
+               <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-12 py-8 font-bold flex items-center gap-3 text-lg shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95" onClick={() => window.location.href='tel:56350000'}>
+                 <Phone className="w-5 h-5" /> Ring 56 35 00 00
+               </Button>
+               <Button variant="outline" className="border-white/10 hover:border-primary/50 hover:bg-primary/5 text-white rounded-full px-12 py-8 font-bold text-lg transition-all active:scale-95" asChild>
+                 <Link to="/takeaway">Se Takeaway-meny</Link>
+               </Button>
+            </div>
+          </section>
+
+          {/* Allergen List */}
+          <section className="mt-24 pt-16 border-t border-white/5">
+            <h3 className="font-display text-xl font-bold text-white mb-10 tracking-[0.1em] uppercase">
+              Allergenoversikt
             </h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
               {allergenCodes.map((allergen) => (
                 <div
                   key={allergen.code}
-                  className="flex items-center gap-2 text-sm text-muted-foreground"
+                  className="flex items-center gap-4 text-sm text-gray-500 hover:text-gray-300 transition-colors group"
                 >
-                  <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">
+                  <span className="w-10 h-10 rounded-xl bg-white/5 text-primary flex items-center justify-center text-xs font-black border border-white/5 group-hover:border-primary/30 group-hover:bg-primary/5 transition-all">
                     {allergen.code}
                   </span>
-                  <span>{allergen.name}</span>
+                  <span className="font-semibold tracking-tight uppercase text-xs">{allergen.name}</span>
                 </div>
               ))}
             </div>
@@ -349,35 +400,57 @@ const MenuPage = () => {
 
       {/* Item Modal */}
       <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
-        <DialogContent className="bg-card border-border max-w-lg p-0 overflow-hidden">
+        <DialogContent className="bg-[#0f0f0f] border-white/10 max-w-lg p-0 overflow-hidden shadow-3xl backdrop-blur-2xl">
           {selectedItem && (
             <>
-              <div className="relative h-64 w-full">
+              <div className="relative h-80 w-full">
                 <img
                   src={selectedItem.image}
                   alt={selectedItem.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent" />
               </div>
-              <div className="p-6">
+              <div className="p-10">
                 <DialogHeader>
-                  <DialogTitle className="font-display text-2xl">{selectedItem.name}</DialogTitle>
+                  <DialogTitle className="font-display text-4xl font-bold text-white tracking-tight">{selectedItem.name}</DialogTitle>
                 </DialogHeader>
-                <p className="text-muted-foreground mt-2">{selectedItem.description}</p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-3xl font-bold text-primary">{selectedItem.price}</span>
-                  {selectedItem.allergens && (
-                    <span className="text-xs text-muted-foreground italic">
-                      Allergener: {selectedItem.allergens}
-                    </span>
-                  )}
+                <p className="text-gray-400 mt-6 leading-relaxed font-light text-lg italic">{selectedItem.description}</p>
+                <div className="mt-12 flex items-center justify-between gap-8">
+                  <span className="text-4xl font-black text-primary tracking-tighter">{selectedItem.price}</span>
+                  <Button className="rounded-full px-10 py-7 font-bold text-md shadow-lg shadow-primary/20 hover:scale-105 transition-transform" asChild>
+                    <Link to="/takeaway">Bestill Takeaway</Link>
+                  </Button>
                 </div>
+                {selectedItem.allergens && (
+                  <div className="mt-10 pt-8 border-t border-white/5 flex items-center gap-3">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Allergener:</span>
+                    <span className="text-xs text-gray-400 font-bold">{selectedItem.allergens}</span>
+                  </div>
+                )}
               </div>
             </>
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Sticky Mobile Knapp */}
+      <div className="md:hidden fixed bottom-8 left-6 right-6 z-[50]">
+        <Link to="/takeaway">
+          <motion.div 
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-primary text-white p-5 rounded-2xl shadow-[0_20px_40px_rgba(230,57,70,0.4)] flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <ShoppingBag className="w-6 h-6" />
+              <span className="font-black tracking-tight uppercase text-sm">Bestill takeaway nå</span>
+            </div>
+            <ChevronRight className="w-5 h-5" />
+          </motion.div>
+        </Link>
+      </div>
     </PageTransition>
   );
 };

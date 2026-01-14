@@ -7,7 +7,7 @@ interface ParallaxSectionProps {
   backgroundImage?: string;
   className?: string;
   overlayOpacity?: number;
-  isHero?: boolean; // Bruk denne for toppbilder
+  isHero?: boolean;
 }
 
 export const ParallaxSection = ({
@@ -23,7 +23,8 @@ export const ParallaxSection = ({
     offset: ['start end', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+  // Forsterket effekt: 30% bevegelse
+  const y = useTransform(scrollYProgress, [0, 1], ['-30%', '30%']);
 
   return (
     <div 
@@ -33,26 +34,24 @@ export const ParallaxSection = ({
       {backgroundImage && (
         <>
           <motion.div
-            className="absolute inset-0 w-full h-[120%]"
+            className="absolute inset-0 w-full h-[160%]"
             style={{
               y,
               backgroundImage: `url(${backgroundImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              top: '-10%',
+              top: '-30%',
               zIndex: 0,
             }}
           />
           
-          {/* KUN BUNN-GRADIENT: Fjerner den harde kanten nede */}
           <div 
             className="absolute inset-x-0 bottom-0 h-96 pointer-events-none z-[1]" 
             style={{
-              background: 'linear-gradient(to top, #0a0a0a 0%, #0a0a0a 10%, transparent 100%)'
+              background: 'linear-gradient(to top, #0a0a0a 0%, #0a0a0a 15%, transparent 100%)'
             }}
           />
 
-          {/* OVERLAY: Gjør bildet mørkere for tekst, men fader ut i toppen på Hero-bilder */}
           <div
             className="absolute inset-0 z-[2] pointer-events-none"
             style={{
