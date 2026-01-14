@@ -4,7 +4,7 @@ import { PageTransition } from '../components/PageTransition';
 import { ParallaxSection } from '../components/ParallaxSection';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
 import { Button } from '../components/ui/button';
-import { ShoppingBag, Phone, ChevronRight } from 'lucide-react';
+import { ShoppingBag, Phone, ChevronRight, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Definerer bildet her for enkel forhåndslasting
@@ -33,15 +33,15 @@ const menuCategories: MenuCategory[] = [
         name: 'Shoyu Ramen',
         description: 'Lett og elegant soyabasert buljong med kylling. Servert med spinat, marinert egg, menma og sesamfrø.',
         price: '210,-',
-        image: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?w=800&q=80',
         allergens: 'A, C, F',
       },
       {
         id: 2,
         name: 'Miso Ramen',
-        description: 'Rik og smakfull miso-basert buljong med håndlagde nudler. Toppet med mais, smør, bønnespirer og fersk chili.',
+        description: 'Rik og smakfull miso-basert buljong med hovndlagde nudler. Toppet med mais, smør, bønnespirer og fersk chili.',
         price: '210,-',
-        image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=800&q=80',
         allergens: 'A, C, F, G',
       },
       {
@@ -49,7 +49,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Loftet Cheese Ramen',
         description: 'Vår signaturrett! Kremet ostebuljong med rik smak. Servert med smeltet ost, bacon og vårløk.',
         price: '225,-',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1552611052-d59a0d9741bc?w=800&q=80',
         allergens: 'A, C, G',
       },
       {
@@ -57,7 +57,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Vegan Shoyu',
         description: 'Plantebasert soyabuljong med tofu, shiitake, pak choy, vårløk og sesamolje.',
         price: '195,-',
-        image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -65,7 +65,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Vegan Miso Tantan',
         description: 'Krydret sesambuljong med tofufyll, pak choy, chilisolje og knust peanøtt. Vegansk og smakfull.',
         price: '195,-',
-        image: 'https://images.unsplash.com/photo-1552611052-33e04de081de?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80',
         allergens: 'A, E, F',
       },
     ],
@@ -78,21 +78,21 @@ const menuCategories: MenuCategory[] = [
         name: 'Svinekjøtt',
         description: 'Mørt og saftig chashu-svin, perfekt marinert.',
         price: '+35,-',
-        image: 'https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?w=800&q=80',
       },
       {
         id: 7,
         name: 'Kylling',
         description: 'Grillet kyllingbryst med teriyaki-glaze.',
         price: '+35,-',
-        image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800&q=80',
       },
       {
         id: 8,
         name: 'Biff',
         description: 'Tynneskåret biff, lynstekt til perfeksjon.',
         price: '+45,-',
-        image: 'https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=800&q=80',
       },
     ],
   },
@@ -104,7 +104,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Biff og Løk Udon',
         description: 'Tykke udon-nudler i rik buljong med tynneskåret biff og karamellisert løk.',
         price: '210,-',
-        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -112,7 +112,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Soyamelk Kylling Udon',
         description: 'Kremet soyamelk-buljong med mørt kyllingkjøtt og udon-nudler.',
         price: '200,-',
-        image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -120,7 +120,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Udon Carbonara',
         description: 'Japansk vri på italiensk klassiker. Kremet eggesaus, bacon og parmesan.',
         price: '190,-',
-        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800&q=80',
         allergens: 'A, C, G',
       },
       {
@@ -128,7 +128,7 @@ const menuCategories: MenuCategory[] = [
         name: "Marine Captain's Curry",
         description: 'Japansk curry med sjømat, servert over dampet ris med pickles.',
         price: '200,-',
-        image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&q=80',
         allergens: 'A, B, D',
       },
       {
@@ -136,7 +136,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Gyudon Biff Rice Bowl',
         description: 'Klassisk japansk biff-bolle med tynneskåret biff, løk og søt soyasaus over ris.',
         price: '185,-',
-        image: 'https://images.unsplash.com/photo-1547928576-a4a33237cbc3?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1547928576-a4a33237cbc3?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -144,7 +144,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Oyakodon Chicken Rice Bowl',
         description: 'Tradisjonell kylling og egg-bolle over dampet ris med løk og dashi.',
         price: '185,-',
-        image: 'https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=800&q=80',
         allergens: 'A, C, F',
       },
     ],
@@ -157,7 +157,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Gua-Bao (3 stk)',
         description: 'Myke, dampede brød fylt med svinekjøtt, pickles, koriander og hoisin-saus.',
         price: '165,-',
-        image: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -165,7 +165,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Samurai-Potet',
         description: 'Bakt potet med teriyaki-kylling, sesamfrø, vårløk og wasabi-majones.',
         price: '149,-',
-        image: 'https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?w=800&q=80',
         allergens: 'C, F',
       },
       {
@@ -173,7 +173,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Klassisk-Potet',
         description: 'Bakt potet med rømme, bacon, ost og gressløk.',
         price: '149,-',
-        image: 'https://images.unsplash.com/photo-1639024471283-03518883512d?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1639024471283-03518883512d?w=800&q=80',
         allergens: 'C, G',
       },
     ],
@@ -186,7 +186,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Vårruller (4 stk)',
         description: 'Sprø vårruller fylt med grønnsaker og glassnudler. Servert med sweet chili.',
         price: '90,-',
-        image: 'https://images.unsplash.com/photo-1606525437679-037aca74a3e9?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1606525437679-037aca74a3e9?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -194,7 +194,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Kyllingdumplings (6 stk)',
         description: 'Dampede dumplings med kyllingfyll, servert med ponzu og chilisolje.',
         price: '125,-',
-        image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -202,7 +202,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Yakitori (3 stk)',
         description: 'Grillede kyllingspyd med teriyaki-glaze og sesamfrø.',
         price: '100,-',
-        image: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80',
         allergens: 'A, F',
       },
       {
@@ -210,7 +210,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Karaage',
         description: 'Japansk fritert kylling marinert i soya, sake og ingefær. Servert med japansk majones.',
         price: '125,-',
-        image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=800&q=80',
         allergens: 'A, C, F',
       },
       {
@@ -218,7 +218,7 @@ const menuCategories: MenuCategory[] = [
         name: 'Pommes Frites',
         description: 'Sprø pommes frites med valgfri dip.',
         price: '55,-',
-        image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=80',
       },
     ],
   },
@@ -253,15 +253,14 @@ const MenuPage = () => {
           overlayOpacity={0.6}
           isHero={true}
         >
-          {/* Sentrert innhold */}
           <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="font-display text-5xl md:text-8xl font-bold mb-4 tracking-tighter"
+              className="font-display text-5xl md:text-8xl font-bold mb-4 tracking-tighter text-white"
             >
-              Vår <span className="text-primary italic">Meny</span>
+              2 Katter på <span className="text-primary italic">Loftet</span>
             </motion.h1>
             
             <motion.p
@@ -292,7 +291,6 @@ const MenuPage = () => {
           </div>
         </ParallaxSection>
 
-        {/* Mørk gradient i bunnen av Hero */}
         <div 
           className="absolute inset-x-0 bottom-0 h-64 z-[20] pointer-events-none" 
           style={{ 
@@ -321,22 +319,26 @@ const MenuPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: itemIndex * 0.05 }}
-                    whileHover={{ y: -10 }}
-                    className="group bg-white/[0.02] rounded-2xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.04] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                    whileHover={{ 
+                      y: -10,
+                      boxShadow: '0 0 25px 5px hsl(355 82% 56% / 0.45)',
+                      borderColor: "rgba(230, 57, 70, 0.4)"
+                    }}
+                    className="group bg-white/[0.02] rounded-2xl overflow-hidden cursor-pointer border border-white/5 will-change-transform"
                     onClick={() => setSelectedItem(item)}
                   >
                     <div className="relative h-56 overflow-hidden">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                       />
                       <div className="absolute top-4 right-4 bg-primary text-white px-5 py-2 rounded-full text-sm font-black shadow-xl">
                         {item.price}
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                     </div>
-                    <div className="p-7">
+                    <div className="p-7 bg-[#0a0a0a]/40 backdrop-blur-sm border-t border-white/5">
                       <h3 className="font-display text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors tracking-tight">
                         {item.name}
                       </h3>
@@ -378,8 +380,8 @@ const MenuPage = () => {
 
           {/* Allergen List */}
           <section className="mt-24 pt-16 border-t border-white/5">
-            <h3 className="font-display text-xl font-bold text-white mb-10 tracking-[0.1em] uppercase">
-              Allergenoversikt
+            <h3 className="font-display text-xl font-bold text-white mb-10 tracking-[0.1em] uppercase flex items-center gap-2">
+              <Info className="w-5 h-5 text-primary" /> Allergenoversikt
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
               {allergenCodes.map((allergen) => (
@@ -398,7 +400,6 @@ const MenuPage = () => {
         </div>
       </div>
 
-      {/* Item Modal */}
       <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
         <DialogContent className="bg-[#0f0f0f] border-white/10 max-w-lg p-0 overflow-hidden shadow-3xl backdrop-blur-2xl">
           {selectedItem && (
@@ -434,7 +435,6 @@ const MenuPage = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Sticky Mobile Knapp */}
       <div className="md:hidden fixed bottom-8 left-6 right-6 z-[50]">
         <Link to="/takeaway">
           <motion.div 
